@@ -29,7 +29,7 @@ FILE* infos_pc (int nbr,pc* etudiant,char* filename){
 		printf("Etiquette : "); scanf("%s",etudiant[i].etiquette);
 		printf("Mac : "); scanf("%s",etudiant[i].mac);
 		printf("\n");
-		fprintf(fichier,"%s\t%s\t%s\n",etudiant[i].mac,etudiant[i].etiquette,etudiant[i].marque);
+		fprintf(fichier,"%s\t%s\t%s\n",etudiant[i].marque,etudiant[i].etiquette,etudiant[i].mac);
 	}
 	fclose(fichier);
 	return fichier;
@@ -118,31 +118,31 @@ FILE* infos_stud (int number,student *etudiant,char* filename){
 		printf("Prenom : "); 	fgets(etudiant[i].prenom,100,stdin);
 		etudiant[i].prenom[strlen(etudiant[i].prenom)-1] ='\0';
 		
-		printf("Tel : ");	fgets(etudiant[i].tel,100,stdin);
+		printf("Tel : ");	fgets(etudiant[i].tel,50,stdin);
 		etudiant[i].tel[strlen(etudiant[i].tel)-1] ='\0';
 		
-		printf("Email : ");	fgets(etudiant[i].email,100,stdin);
+		printf("Email : ");	fgets(etudiant[i].email,20,stdin);
 		etudiant[i].email[strlen(etudiant[i].email)-1] ='\0';
 		
-		printf("Adresse : "); fgets(etudiant[i].adresse,100,stdin);
+		printf("Adresse : "); fgets(etudiant[i].adresse,50,stdin);
 		etudiant[i].adresse[strlen(etudiant[i].adresse)-1] ='\0';
 		
-		printf("Naissance : ");	fgets(etudiant[i].naissance,100,stdin);
+		printf("Naissance : ");	fgets(etudiant[i].naissance,10,stdin);
 		etudiant[i].naissance[strlen(etudiant[i].naissance)-1] ='\0';
 		
 		printf("Lieu de naissance : ");	fgets(etudiant[i].lieu,100,stdin);
 		etudiant[i].lieu[strlen(etudiant[i].lieu)-1] ='\0';
 		
-		printf("Bac : "); fgets(etudiant[i].bacc,100,stdin);
+		printf("Bac : "); fgets(etudiant[i].bacc,10,stdin);
 		etudiant[i].bacc[strlen(etudiant[i].bacc)-1] ='\0';
 		
-		printf("Genre : "); fgets(etudiant[i].genre,100,stdin);
+		printf("Genre : "); fgets(etudiant[i].genre,10,stdin);
 		etudiant[i].genre[strlen(etudiant[i].genre)-1] ='\0';
 		
-		printf("CIN : "); fgets(etudiant[i].cin,100,stdin);
+		printf("CIN : "); fgets(etudiant[i].cin,20,stdin);
 		etudiant[i].cin[strlen(etudiant[i].cin)-1] ='\0';
 		
-		printf("URL gitHUb : "); fgets(etudiant[i].url,100,stdin);
+		printf("URL gitHUb : "); fgets(etudiant[i].url,20,stdin);
 		etudiant[i].url[strlen(etudiant[i].url)-1] ='\0';
 		printf("\n");
 		fprintf(file,"%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\n",etudiant[i].nom,etudiant[i].prenom,etudiant[i].tel,etudiant[i].email,etudiant[i].adresse,etudiant[i].naissance,etudiant[i].lieu,etudiant[i].bacc,etudiant[i].genre,etudiant[i].cin,etudiant[i].url);
@@ -222,7 +222,9 @@ FILE* add_url(FILE* file, char* filename) {
 			sscanf(contents[i],"%[^,\t]%*[,\t]%[^,\t]%*[,\t]%[^,\t]%*[,\t]%[^,\t]%*[,\t]%[^,\t]%*[,\t]%[^,\t]%*[,\t]%[^,\t]%*[,\t]%[^,\t]%*[,\t]%[^,\t]%*[,\t]%[^,\t]%*[,\t]%[^,\n]",tmp[i].nom,tmp[i].prenom,tmp[i].tel,tmp[i].email,tmp[i].adresse,tmp[i].naissance,tmp[i].lieu,tmp[i].bacc,tmp[i].genre,tmp[i].cin,tmp[i].url);
 			
 			if (strcmp(tmp[i].nom, anarana) == 0) {
-				strcat(contents[i],url);
+				if(strcmp(tmp[i].url,"") == 0){
+					strcat(contents[i],url);
+				}
 			}
 		  
 			fprintf(fic,"%s\n",contents[i]);
