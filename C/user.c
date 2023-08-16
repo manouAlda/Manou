@@ -1,72 +1,72 @@
-#include <stdio.h>
+﻿#include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
+#include <time.h>
 #include <string.h>
 #include <time.h>
 
-char** allouer(int line,int cols){
-	srand(time(NULL));
-	char **tab=NULL;
-	tab=(char**)malloc(sizeof(char*)*line);
-	for(int i=0;i<line;i++){
-		*(tab+i)=(void*)calloc(cols,sizeof(char)*cols);
-	}
-	return tab;
+int EstPoints(char* tab){
+	int v=0;	
+	for(int j=0;j<strlen(tab); j++)
+			if(tab[j]==':' && tab[j+1]!=':')	v++;               							
+	return v;
 }
 
-int main(){
-	/*char user[10][50];*/
-	int uid=13, gid, i;
-	int count=0,index1=0,index2=0;
-	//char rep[20],shell[20];
-	char** contenu=allouer(100,255);
-	char* azo =malloc(100);
-	
-	FILE* file ,*file2;
+int main() {
+	srand(time(NULL));
+	int i=0,mdp;
+	char line[255];
+    char* mot = malloc(20);   
+    char* user = malloc(20);
+    char* rep = malloc(20);
+    char* shell = malloc(20);
+    int uid=0,j=0,k=0;
+    
+   FILE* file, *file2;
 	file= fopen ("/etc/passwd","r");
-	file2= fopen ("copie.csv","w+");
+	file2= fopen ("copie.txt","w+");
 	
 	if (file == NULL){
-		printf("Erreur d'ouverture du fichier\n");
-		sleep(5);   exit(1);
+	   exit(1);
 	}
-	if (file2 == NULL)	exit(1);
-	
-	fputs("User\tEmail\tPassword\tRepertoire\tShell\n",file2);
-	for(i=0;feof(file)!=1;i++){
-		fgets(contenu[i],255,file);
-		printf("-> %s\n",contenu[i]);
-		
-		azo = strtok(contenu[i],":");
-		while(azo != NULL){
-			//printf("%s\n", azo);
-		/*	count++;
-			if(count==3){	    uid = atoi(azo);		index1=i;	}		
-			else if(count==4){	gid = atoi(azo);	index2=i;	    }
-			else if(count>4){	break;							}	*/
-		}
-		azo = strtok (NULL,":");
-	}
-	
+	fputs("\t\t		INFOS USER		\t\t\n",file2);
+	while(feof(file)!=1){
+		mdp =( rand() % (RAND_MAX -1000+1) ) +1000;
+		k=EstPoints(line);
+		fgets(line,255,file);
 			
-	fclose(file);
-	fclose (file2);
-/*	
-	file= fopen ("/etc/passwd","r");
-	file2= fopen ("file2.csv","a+");
-	if (file2 == NULL)	exit(1);
+		mot = strtok(line,":");
+		/// 1er champs
+		if (mot == NULL)	continue;
+		user = mot;
+		/// 2em champs
+		mot = strtok(NULL,":");
+		if (mot == NULL)	continue;
+		/// 3em champs
+		mot = strtok(NULL,":");
+		if (mot == NULL)	continue;
+		uid = atoi(mot);
+		/// 4em,5em et 6em champs en boucle 
+		int fin ;
+		if(k==5)	fin=2;
+		else if(k==6)	fin=3;
+		for (j=0; j<fin;j++){
+			mot = strtok(NULL,":");
+			if (mot == NULL)	continue;
+		}	
+		rep = mot;
+		/// 7em champs
+		mot = strtok(NULL,":");
+		if (mot == NULL)	continue;
+		shell = mot;
 	
-	fputs("\t  INFOS USER	\t\n",file2);
-	for(i=0;feof(file)!=1;i++){
-		mdp = ( rand() % (RAND_MAX - 1000 +1)) + 1000;
-		if (uid >= 1000 && gid >= 1000  && gid < 2000 && uid < 2000)
-			if(feof(file)!=1)	fprintf(file2,"%s\t%s@mit.mg\t%d\n",user[10],user[10],mdp);
-		fgets(contenu[i],255,file);	
-		sscanf(contenu[i],"%[^:]:%*[^:]:%d:%d:%*[^:]:%[^:]:%[^:]",user[10],&uid,&gid,rep,shell);
+		if(uid>=1000 && uid<5000){
+			fprintf(file2,"%s	%s@mit.mg	%d	%s	%s\n",user,user,mdp,rep,shell);
+		}
+		i++;
 	}
 	
-	fclose(file2);
 	fclose(file);
-*/
-	return 0;
+	fclose(file2);
+	
+    return 0;
 }
