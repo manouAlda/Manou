@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<HTML>
+    <HEAD>
+        <TITLE>Formulaire</TITLE>
+    </HEAD>
+    <BODY>
+        <DIV>
+            <h1>Contactez-nous</h1>
+            <P>Un probl&egrave;me, une question? N'h&eacute;sitez pas &agrave; utiliser ce formulaire pour prendre contact avec nous !</P>
+            <p>
+                    <IMG SRC="/home/mit/html/img/appel.png" width="3%" height="3%">
+                        +261337888078
+            </p>
+            <p>
+                    <IMG SRC="/home/mit/html/img/messagerie.png" width="5%" height="5%">
+                        lenepveumanou@gmail.com
+            </p>
+            <p><br> Soit: <br></p>
+
+            <FORM ACTION="/page-traitement-donnees" method="POST"> <!--les donnees seront redirigees vers la /page-traitement-donnes-->
+                <DIV >
+                    <LABEL FOR="NOM">Votre nom</LABEL>
+                    <input type="text" id="nom" name="nom" placeholder="Manou" required>
+                </DIV>
+                <br>
+                <DIV>
+                    <LABEL FOR="EMAIL">Votre email</LABEL>
+                    <input type="email" id="email" name="email" placeholder="monadresse@mail.com" required>
+                </DIV>
+                <br>
+                <DIV>
+                    <LABEL FOR="SUJET">Quel est le sujet de votre message ?</LABEL>
+                    <SELECT type="sujet" id="sujet" required>
+                        <OPTION VALUE="" disabled selected hidden>Choississez le sujet de votre message</OPTION>
+                        <OPTION VALUE="Explication">Probl&egrave;me de l'explication incomprise</OPTION>
+                        <OPTION VALUE="Exemple">Sujet non concret</OPTION>
+                        <OPTION VALUE="Le&ccedil;on">Contexte d&eacute;pr&eacute;ci&eacute;</OPTION>
+                        <OPTION VALUE="Autres">Autre...</OPTION>
+                        <!--select ts miprend en compte an le placeholder fa faux choix fotsiny : cache et desactive-->
+                    </SELECT>
+                </DIV>
+                <br> 
+                <DIV>
+                    <LABEL FOR="Message">Votre message</LABEL>
+                    <TEXTAREA ID="message" NAME="message" PLACEHOLDER="Bonjour, je vous contacte car..."></TEXTAREA>
+                </DIV>
+                <br>
+                <DIV>
+                    <BUTTON TYPE="submit">Envoyer mon message</BUTTON>
+                </DIV>
+            </FORM>
+        </DIV>
+    </BODY>
+</HTML>
