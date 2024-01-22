@@ -3,11 +3,10 @@
 #include <string.h>
 
 int main(){
-	/*float prix[4]={24.42, 24.42, 24.2424, 85.23};
+	float prix[4]={24.42, 24.42, 24.2424, 85.23};
 	char* note[] = {"13.157% higher than in-store", "13.157% lower than in-store", "Same as in-store", "19.24% higher than in-store"};
-	double x = 24.24;*/
-	char* toi[]={"me","aba","moi","er","ze","abb"};
-	/*
+	double x = 24.24;
+	
 	char test[10];
     double high=0;
     double pct=0, n=0;
@@ -36,26 +35,7 @@ int main(){
     }
     else if (n>=x){
         printf("true\n");
-    } */
-	
-	int max=0,n=0;
-	for(int i=0;i<6;i++){
-		n= strlen (toi[i]);
-		if(max<n){
-			max=n;
-		}
-	}
-	char* moi[6];
-	printf("max = %d\n",max);
-	for(int i=0;i<6;i++){
-		n= strlen (toi[i]);
-		if(n==max){
-			int j=0;
-			printf("%s\n",toi[i]);
-			moi[j]=toi[i];
-			j++;
-		}
-	}
+    } 
 	
 	return 0;
 }

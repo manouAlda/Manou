@@ -2,49 +2,16 @@
 #include <string.h>
 #include <stdlib.h>
 #include <math.h>
-char** alloue2DChar(int taille);
-int IndiceEspace(char* heure);
-char** alloue2DChar(int taille);
-char** SeparerEspace(char* heure);
-int* position_Slash(int j,char** espace);
-char** separationSlash(int j,char** espace);
-int Ascii(char slash);
-int CharToInt(int j,char** slash);
-float Conversion_en_jour(int j, char** espace);
-char* changementDuFormat(float jour,char** espace);
-int main (){
-	char heure[30]="20/05/2023  7:12:00";
-	char** espace=NULL;
-	int* position=NULL;
-	char** slash=NULL;
-	char* final=malloc(10);
-	int ligne=0;
-	float jours=0.0;
-	///allocation du tableau
-	espace=alloue2DChar(3);
-	position=(int*)malloc(2*sizeof(int));
-	slash=alloue2DChar(4);
 
-	///afficher la separation du slash
-	espace=SeparerEspace( heure);
-	
-	///position Slash
-	position=position_Slash(ligne,espace);
-	
-	
-	///separation Slash
-	slash=separationSlash(ligne,espace);
-		///charTO INt
-	CharToInt(ligne,slash);
+char** alloue2DChar(int taille){
+	char** tab;
+	tab=(char**)malloc((taille)*sizeof(char*));
+	for(int i=0;i<(taille+1); i++){
+		tab[i]=malloc(10);
+	}
+	return tab;
+}
 
-	///conversion du format heures en nombre de jours
-	jours=Conversion_en_jour(ligne,espace);
-	
-	 ///etape finale
-	final=changementDuFormat(jours, espace);
-	printf("\nLe nouveau format est %s ",final);
-	return 0;
-}	
 int IndiceEspace(char* heure){
 	int espace=0;
 	
@@ -69,16 +36,7 @@ char** SeparerEspace(char* heure){    ///utile pour separer les slashs et les de
 	
 	}
 		return tab;
-}	
-	
-char** alloue2DChar(int taille){
-	char** tab;
-	tab=(char**)malloc((taille)*sizeof(char*));
-	for(int i=0;i<(taille+1); i++){
-		tab[i]=malloc(10);
-	}
-	return tab;
-}		 	
+}			 	
 
 int* position_Slash(int j, char** espace){
 	int* indic=(int*)malloc(2*sizeof(int));
@@ -110,9 +68,7 @@ char** separationSlash(int j,char** espace){
 	return SLash;
 }		 
 int Ascii(char slash){
-	
-	return (slash-'0');
-	
+	return (slash-'0');	
 }	
 int CharToInt(int j ,char** slash){               ///utile pour convertir les caracteres en entiers
 	int nbre=0;
@@ -157,4 +113,3 @@ char* changementDuFormat(float jours,char** espace){
 	
 	return format;
 }	
-

@@ -3,58 +3,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-//int compterSlash(char* car);
-int* IndiceSlash(char* car);
-char** alloue2DChar(int taille);
-char** SeparerSlash(char* car,int* indice);
-///enlever le premier tableau d' indice 1 et separer le nombre 
-
-int Etvirgule(char** tab);    ///pour trouver la place du virgule
-char** SepareVirgule(int v,char** tab);
-int charToint(char SepVir);
-float Double(int v,char** SepVir);
-
-///conversion en date
-float ENseconde(float nbre);
-char* convertirDate(float nbre);
-
-char* affichageFormatDate(int* indice,char* car,char** tab);
-int main (){
-	char car[]= "12.3/03/2023";
-	int taille=0;
-	int* indice=(int*)malloc(taille*sizeof(int));
-	char** tab=NULL;                 //les indices du slash
-	char** SepVir=NULL;
-	int v=0;                        ///pour stocker la valeur de l' indice du virgule
-	float nbre=0.0;
-	char* format=NULL;
-	char* date=NULL;
-		
-///allocation du tableau	
-	tab=alloue2DChar(taille);
-	format=malloc(150);
-	date=malloc(50);
-	
-///utile pour separer le Slash	
-	indice=IndiceSlash( car);
-	tab=SeparerSlash( car,indice);
-	
-///utile pour separer le virgule	
-	v=Etvirgule(tab);
-	SepVir=SepareVirgule( v, tab);
-	nbre=Double( v, SepVir);
-	
-///conversion en date
-	convertirDate( nbre);
-	format=affichageFormatDate(indice, car, tab);
-	date=convertirDate(nbre);
-///Resultat final
-	printf("Voici la date : %s\n",format);
-	printf("Voici l' heure: %s_\n",date);	
-	
-
-	return 0;
-}	
 
 /*
 int compterSlash(char* car){
@@ -176,4 +124,3 @@ char* affichageFormatDate(int* indice,char* car,char** tab){
 	sprintf(date,"%d/%d/%d\n",b[0],b[1],b[2]);
 	return date;
 }	                       
-

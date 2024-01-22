@@ -1,5 +1,5 @@
-#ifndef ADDRESS_H
-#define ADDRESS_H
+#ifndef IP_H
+#define IP_H
 
 int testons (const char* ip);
 const char* asiana_point(const char* tab);
